@@ -33,13 +33,13 @@ result <- build_grain_key(Database)
 
 # View age composition
 head(result$grain_key)
-#> # A tibble: 4 × 6
-#>    year quarter Grain_class `Age-0` `Age-1` `Age-2`
-#>   <dbl>   <int> <chr>         <dbl>   <dbl>   <dbl>
-#> 1  2024       1 84-125       0.0335   0.899  0.0671
-#> 2  2024       2 84-125       0.103    0.839  0.0576
-#> 3  2024       3 84-125       0.101    0.884  0.0155
-#> 4  2024       4 84-125       0.127    0.807  0.0665
+#> # A tibble: 4 × 7
+#>    year quarter Grain_class `Age-0` `Age-1` `Age-2` `Age-3`
+#>   <dbl>   <int> <chr>         <dbl>   <dbl>   <dbl>   <dbl>
+#> 1  2025       1 51-83         0       0.814  0.171  0.0143 
+#> 2  2025       2 51-83         0       0.871  0.114  0.0152 
+#> 3  2025       3 51-83         0.645   0.231  0.107  0.0165 
+#> 4  2025       4 51-83         0.794   0.131  0.0654 0.00935
 
 # Plot proportion-at-age
 plot_grain_key(result, plot_type = "percentage")
@@ -61,8 +61,6 @@ catch_by_age <- calc_catch_by_age(result$grain_key, res_default)
 
 # Plot
 plot_catch_by_age(catch_by_age)
-#> Warning: Removed 12 rows containing missing values or values outside the scale range
-#> (`geom_col()`).
 ```
 
 <img src="man/figures/README-unnamed-chunk-3-1.png" width="100%" />
@@ -84,5 +82,6 @@ plot_catch_by_age(catch_by_age)
 
 ## License and Authorship
 
-MIT License © 2025 María José Zúñiga Developed at IEO-CSIC as part of
-the BioEcon4Fish project.
+MIT License © 2025 María José Zúñiga
+
+Developed at IEO-CSIC as part of the BioEcon4Fish project.
