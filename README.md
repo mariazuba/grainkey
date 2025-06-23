@@ -80,6 +80,8 @@ plot_catch_by_age(catch_by_age)
 
 ## Vignette
 
+[Vignette](doc/grain-key-tutorial.html)
+
 ## License and Authorship
 
 MIT License © 2025 María José Zúñiga
