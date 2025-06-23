@@ -1,0 +1,27 @@
+Package: grainkey
+Title: Grain-Age Key Estimation Tools
+Version: 0.1.0
+Authors@R: person("María José", "Zúñiga", email = "maria.zuniga@ieo.csic.es", role = c("aut", "cre"))
+Description: Functions to estimate and visualize age composition by grain class based on individual peces biological data (age and weight).
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.1
+Depends: 
+    R (>= 2.10)
+Imports:
+    dplyr,
+    ggplot2,
+    tidyr,
+    lubridate,
+    purrr,
+    stats,
+    magrittr
+Suggests: 
+    knitr,
+    rmarkdown,
+    testthat (>= 3.0.0),
+    tibble
+Config/testthat/edition: 3
+VignetteBuilder: knitr

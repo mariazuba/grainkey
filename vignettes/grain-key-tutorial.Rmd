@@ -1,0 +1,108 @@
+---
+title: "Grain–Age Key Estimation Tutorial"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Grain–Age Key Estimation Tutorial}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.width = 7,
+  fig.height = 5
+)
+library(grainkey)
+library(ggplot2)
+library(magrittr)  # Para usar %>% en la viñeta
+
+```
+
+# Introduction
+
+This vignette demonstrates how to estimate and visualize the age composition para el caso base of anchovy (*Engraulis encrasicolus*) using the grainkey package. The package allows users to build a grain–age key based on biological samples and explore commercial catch composition by grain class.
+
+## Estimating the Grain–Age Key from Biological Samples
+
+### Load Example Data
+
+```{r}
+data(Database)
+head(Database)
+```
+
+
+### Build the Grain–Age Key
+
+Use `build_grain_key()` to calculate the age composition and weight-at-age by grain class.
+
+```{r}
+result <- build_grain_key(Database)
+```
+
+## Viewing the Age Composition Table
+
+```{r}
+result$grain_key # Proportion-at-age
+
+result$weight_key # Mean weight-at-age
+```
+
+## Visualizing the Grain–Age Key
+
+
+### Age Distribution by Grain Class
+```{r}
+plot_grain_key(result, plot_type="percentage")
+```
+
+### Mean Weight-at-Age by Grain Class
+```{r}
+plot_grain_key(result, plot_type="mean_weight")
+```
+
+
+## Estimating Catch Composition from Sales Data
+
+### Load Simulated Sales Data
+```{r}
+data("data_NV")
+
+notaV<-data_NV
+```
+
+
+### Estimate Catch by Grain Class
+```{r}
+res_default     <- calc_grain_catch(notaV)
+res_t1_to_t3    <- calc_grain_catch(notaV, reassign = TRUE, talla1_to = "TALLA 3")
+res_no_reassign <- calc_grain_catch(notaV, reassign = FALSE)
+```
+
+### Visualize Catch by Grain Class and Quarter
+```{r}
+plot_grain_catch(res_no_reassign)
+plot_grain_catch(res_default)
+plot_grain_catch(res_t1_to_t3)
+```
+
+## Estimating Catch-at-Age
+
+```{r}
+catch_by_age <- calc_catch_by_age(result$grain_key, res_default)
+catch_by_age
+```
+
+### Plot Catch-at-Age
+
+```{r}
+# Graficar
+plot_catch_by_age(catch_by_age)
+```
+
+# Conclusion
+
+The grainkey package provides tools for translating biological and commercial data into grain–age keys and applying them to catch records to support age-based catch estimation for fisheries assessment.
+
