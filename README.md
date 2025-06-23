@@ -80,7 +80,7 @@ plot_catch_by_age(catch_by_age)
 
 ## Vignette
 
-[Vignette](doc/grain-key-tutorial.html)
+[Vignette](https://mariazuba.github.io/grainkey/articles/grain-key-tutorial.html)
 
 ## License and Authorship
 
